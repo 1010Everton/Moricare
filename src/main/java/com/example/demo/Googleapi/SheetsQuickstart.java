@@ -125,7 +125,7 @@ public class SheetsQuickstart {
                         String emailParaConfirmacao = row.get(9).toString();
                         if (emailParaConfirmacao != null && !emailParaConfirmacao.trim().isEmpty() &&
                                 emailParaConfirmacao.contains("@") && emailParaConfirmacao.contains(".")) {
-                            if (row.size() > 20) {
+                            if (row.size() >= 20) {
                                 if (rastreio.isEmpty() && (enviado == null || enviado.trim().isEmpty())) {
                                     String apresentacao = "😊 Obrigado por escolher o DEPCARE!";
                                     String mensagemConfirmacao = "<p>Olá!</p>" + nome +
@@ -143,12 +143,12 @@ public class SheetsQuickstart {
                                             Collections.singletonList("confirmando")
                                     );
                                     ValueRange body = new ValueRange().setValues(updateValues);
-                                    String updateRange = sheetName + "!W" + (i + 1);
+                                    String updateRange = sheetName + "!U" + (i + 1);
                                     service.spreadsheets().values().update(spreadsheetId, updateRange, body)
                                             .setValueInputOption("RAW").execute();
                                 }
                             } else {
-                                System.out.println("A linha " + (i + 2) + " não possui a coluna 23.");
+                                System.out.println("A linha " + (i + 2) + " não possui todas as colunas necessarias.");
                             }
                         }
                     }
